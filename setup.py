@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup
 from shutil import copy
+import subprocess
+import os
 
 setup(
     name="diffusers_mod", # パッケージの名前
@@ -11,12 +13,15 @@ setup(
 try:
   import diffusers
 except:
-  !pip install git+https://github.com/huggingface/diffusers.git
-
+  # subprocessモジュールを使ってpipコマンドを実行
+  subprocess.run(["pip", "install", "git+https://github.com/huggingface/diffusers.git"])
 
 # コピーしたいファイルのパス
-src_path = "./safety_checker.py"
-dst_path = "/usr/local/lib/python3.10/dist-packages/diffusers/pipelines/deepfloyd_if/safety_checker.py"
+# 絶対パスを指定
+src_path = os.path.abspath("safety_checker.py")
+# インストール先のディレクトリを動的に取得
+dst_dir = os.path.dirname(diffusers.__file__)
+dst_path = os.path.join(dst_dir, "pipelines/deepfloyd_if/safety_checker.py")
 
 # ファイルをコピー
 try:
@@ -25,3 +30,4 @@ except:
   raise FileNotFoundError("""本リポジトリはGoogleコラボでの実行を前提としています。
                          なお、手動でdiffusersのsafety_checker.pyを置き換える場合はその他プラットフォームでも使用できます。
                          """)
+
