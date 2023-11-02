@@ -15,6 +15,7 @@ try:
 except:
   # subprocessモジュールを使ってpipコマンドを実行
   subprocess.run(["pip", "install", "git+https://github.com/huggingface/diffusers.git"])
+import diffusers
 
 # コピーしたいファイルのパス
 # 絶対パスを指定
