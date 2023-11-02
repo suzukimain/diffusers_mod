@@ -15,8 +15,8 @@ except:
 
 
 # コピーしたいファイルのパス
-src_path = "safety_checker.py"
-dst_path = "diffusers/pipelines/deepfloyd_if/safety_checker.py"
+src_path = "./safety_checker.py"
+dst_path = "/usr/local/lib/python3.10/dist-packages/diffusers/pipelines/deepfloyd_if/safety_checker.py"
 
 # ファイルをコピー
 try:
@@ -25,7 +25,3 @@ except:
   raise FileNotFoundError("""本リポジトリはGoogleコラボでの実行を前提としています。
                          なお、手動でdiffusersのsafety_checker.pyを置き換える場合はその他プラットフォームでも使用できます。
                          """)
-
-
-
-
